@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameWorlds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Header Navigation -->
+    <header class="fixed w-full z-50 bg-gray-900/90 backdrop-blur-sm">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-purple-500">GameWorlds</div>
+            <div class="hidden md:flex space-x-8 place-items-center">
+                <a href="#home" class="hover:text-purple-500 transition-colors">Home</a>
+                <a href="#games" class="hover:text-purple-500 transition-colors">Games</a>
+                <a href="#about" class="hover:text-purple-500 transition-colors">About</a>
+                <a href="#contact" class="hover:text-purple-500 transition-colors">Contact</a>
+                <a href="login.html" class="login-button bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition-colors">Login</a>
+            </div>
+            <button class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen relative flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="relative container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Bước Vào Thế Giới Game!</h1>
+            <p class="text-xl md:text-2xl mb-8">Nâng cao trải nghiệm trò chơi với bộ sưu tập game cao cấp của chúng tôi</p>
+            <button class="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-full font-semibold transition-colors">Khám Phá Games Ngay!</button>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Những Game Xu Hướng</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Game Card 1 -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden transform hover:scale-105 transition-transform">
+                    <img src="https://cdn1.epicgames.com/spt-assets/53ec4985296b4facbe3a8d8d019afba9/pubg-battlegrounds-1e9a7.jpg" alt="Game 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">PlayerUnknown's Battlegrounds</h3>
+                        <p class="text-gray-400 mb-4">PUBG: Battlegrounds là một trò chơi điện tử hành động, sinh tồn, nhiều người chơi trực tuyến do Krafton Inc. - tập đoàn phát triển game có trụ sở chính được đặt tại thành phố Seongnam, Hàn Quốc thiết kế, phát triển và phát hành.</p>
+                        <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-lg transition-colors">Play Now</button>
+                    </div>
+                </div>
+                <!-- Game Card 2 -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden transform hover:scale-105 transition-transform">
+                    <img src="https://fastcdn.hoyoverse.com/content-v2/hk4e/126819/4e3925f5d922ecae459cd362cf71f91f_3905560221701646016.jpg" alt="Game 2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Genshin Impact</h3>
+                        <p class="text-gray-400 mb-4">Genshin Impact là trò chơi hành động nhập vai do miHoYo phát triển, được phát hành lần đầu vào ngày 28 tháng 9 năm 2020. Genshin Impact là tựa game mới được miHoYo phát triển tiếp nối sau series Honkai Impact.</p>
+                        <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-lg transition-colors">Play Now</button>
+                    </div>
+                </div>
+                <!-- Game Card 3 -->
+                <div class="bg-gray-900 rounded-xl overflow-hidden transform hover:scale-105 transition-transform">
+                    <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1613284/header.jpg?t=1703992150" alt="Game 3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Forza Horizon 5</h3>
+                        <p class="text-gray-400 mb-4">Forza Horizon 5 là một trò chơi điện tử đua xe năm 2021 được phát triển bởi Playground Games và được Xbox Game Studios phát hành. Đây là tựa Forza Horizon thứ năm và là phần chính thứ mười hai trong loạt Forza. Trò chơi lấy bối cảnh một đại diện hư cấu của Mexico.</p>
+                        <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-lg transition-colors">Play Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Chào Mừng Đến Với GameWorlds</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-purple-500">About Us</h3>
+                    <p class="text-gray-300 leading-relaxed">Chào mừng bạn đến với GameWorlds địa chỉ tin cậy để mua sắm các tựa game bản quyền chất lượng cao! Chúng tôi cam kết mang đến cho bạn trải nghiệm mua sắm trực tuyến tiện lợi, an toàn và nhanh chóng với bộ sưu tập game đa dạng từ các nhà phát hành nổi tiếng trên thế giới.</p>
+                    <p class="text-gray-300 leading-relaxed">Tại GameWorlds, chúng tôi hiểu rằng việc sở hữu những trò chơi bản quyền không chỉ là cách để bạn thưởng thức các sản phẩm giải trí chất lượng mà còn là sự tôn trọng đối với công sức của các nhà phát triển. Vì vậy, tất cả các game trên website của chúng tôi đều là sản phẩm bản quyền chính hãng, đảm bảo bạn có thể trải nghiệm một cách trọn vẹn và hợp pháp.</p>
+                    <button class="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-full font-semibold transition-colors">Xem Thêm</button>
+                </div>
+                <div class="rounded-xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420" alt="About GameWorlds" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4 max-w-2xl">
+            <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
+            <form class="space-y-6">
+                <div>
+                    <label for="name" class="block mb-2">Name</label>
+                    <input type="text" id="name" required class="w-full bg-gray-900 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                </div>
+                <div>
+                    <label for="email" class="block mb-2">Email</label>
+                    <input type="email" id="email" required class="w-full bg-gray-900 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                </div>
+                <div>
+                    <label for="message" class="block mb-2">Message</label>
+                    <textarea id="message" rows="4" required class="w-full bg-gray-900 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg transition-colors">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2024 GameWorlds. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+
+</body>
+</html>
