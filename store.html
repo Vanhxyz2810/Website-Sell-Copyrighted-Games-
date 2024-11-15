@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store - GameWorlds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <header class="fixed w-full z-50 bg-black">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <div class="text-2xl font-bold text-purple-500"> <a href="index.html">GameWorlds</a></div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="store.html" class="hover:text-purple-500 transition-colors">Store</a>
+                    <a href="faq.html" class="hover:text-purple-500 transition-colors">FAQ</a>
+                    <a href="help.html" class="hover:text-purple-500 transition-colors">Help</a>
+                    <a href="contact.html" class="hover:text-purple-500 transition-colors">Contact Us</a>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <div class="relative">
+                    <input type="search" placeholder="Search store" class="bg-gray-800 px-4 py-2 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                </div>
+                
+                <a href="login.html" class="login-button bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition-colors">Login</a>
+                <a href="cart.html" class="text-white hover:text-purple-500 transition-colors relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+            <!-- Mobile menu button remains unchanged -->
+        </nav>
+    </header>
+
+<div class="container mx-auto px-4 py-8 pt-24">
+    <h2 class="text-3xl font-bold text-center mb-8 text-white">Thể Loại Game</h2>
+    
+    <div class="grid gap-8">
+        <!-- Game Nhập Vai -->
+        <div class="bg-gray-800 rounded-lg p-6 shadow-md">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-white">Game Nhập Vai (RPG)</h3>
+                <div class="flex gap-2">
+                    <button class="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </button>
+                    <button class="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="relative">
+                <button class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-colors -ml-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                
+                <button class="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-colors -mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto pb-4">
+                    <div class="bg-gray-900 rounded-lg shadow-md overflow-hidden min-w-[300px]">
+                        <img src="https://gcs.tripi.vn/public-tripi/tripi-feed/img/476440OCr/anh-mo-ta.png" alt="Final Fantasy" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold mb-2">Final Fantasy VII Remake</h4>
+                            <p class="text-red-600 font-bold mb-4">499.000 VNĐ</p>
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 px-4 rounded-lg transition-colors add-to-cart">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg shadow-md overflow-hidden min-w-[300px]">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg?t=1730212926" alt="The Witcher" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold mb-2">The Witcher 3</h4>
+                            <p class="text-red-600 font-bold mb-4">320.000 VNĐ</p>
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 px-4 rounded-lg transition-colors add-to-cart">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg shadow-md overflow-hidden min-w-[300px]">
+                        <img src="https://cdn.tgdd.vn/GameApp/4/263887/Screentshots/dragon-quest-xi-s-echoes-of-an-elusive-age-game-hanh-01-12-2021-0.png" alt="Dragon Quest" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold mb-2">Dragon Quest XI</h4>
+                            <p class="text-red-600 font-bold mb-4">890.000 VNĐ</p>
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 px-4 rounded-lg transition-colors add-to-cart">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Hành Động -->
+        <div class="bg-gray-800 rounded-lg p-6 shadow-md">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-white">Game Hành Động</h3>
+                <div class="flex gap-2">
+                    <button class="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </button>
+                    <button class="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="relative">
+                <button class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-colors -ml-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                
+                <button class="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-colors -mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto pb-4">
+                    <div class="bg-gray-900 rounded-lg shadow-md overflow-hidden min-w-[300px]">
+                        <img src="https://cdn.dlcompare.com/game_tetiere/upload/gameimage/file/7337.jpeg.webp" alt="GTA V" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold mb-2">Grand Theft Auto V</h4>
+                            <p class="text-red-600 font-bold mb-4">450.000 VNĐ</p>
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 px-4 rounded-lg transition-colors add-to-cart">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg shadow-md overflow-hidden min-w-[300px]">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg?t=1720558643" alt="Red Dead" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold mb-2">Red Dead Redemption 2</h4>
+                            <p class="text-red-600 font-bold mb-4">590.000 VNĐ</p>
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 px-4 rounded-lg transition-colors add-to-cart">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg shadow-md overflow-hidden min-w-[300px]">
+                        <img src="https://www.phucanh.vn/media/news/0508_valorant-tren-playstation-1.jpg" alt="Red Dead" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold mb-2">Valorant</h4>
+                            <p class="text-red-600 font-bold mb-4">0 VNĐ</p>
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 px-4 rounded-lg transition-colors add-to-cart">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Kinh Dị -->
+        <div class="bg-gray-800 rounded-lg p-6 shadow-md">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-white">Game Kinh Dị</h3>
+                <div class="flex gap-2">
+                    <button class="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </button>
+                    <button class="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="relative">
+                <button class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-colors -ml-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                
+                <button class="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-colors -mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto pb-4">
+                    <div class="bg-gray-900 rounded-lg shadow-md overflow-hidden min-w-[300px]">
+                        <img src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/06/resident-evil-shadow-of-rose-thumb.jpg" alt="Resident Evil" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold mb-2">Resident Evil Village</h4>
+                            <p class="text-red-600 font-bold mb-4">790.000 VNĐ</p>
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 px-4 rounded-lg transition-colors add-to-cart">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg shadow-md overflow-hidden min-w-[300px]">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/414700/capsule_616x353.jpg?t=1618944453" alt="Outlast" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold mb-2">Outlast 2</h4>
+                            <p class="text-red-600 font-bold mb-4">260.000 VNĐ</p>
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 px-4 rounded-lg transition-colors add-to-cart">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg shadow-md overflow-hidden min-w-[300px]">
+                        <img src="https://daominhha.net/wp-content/uploads/2024/10/download-game-The-Scourge-tai-daominhha7.jpg" alt="Outlast" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold mb-2">Tai Ương</h4>
+                            <p class="text-red-600 font-bold mb-4">220.000 VNĐ</p>
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 px-4 rounded-lg transition-colors add-to-cart">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Mạo Hiểm -->
+        <div class="bg-gray-800 rounded-lg p-6 shadow-md">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-white">Game Mạo Hiểm</h3>
+                <div class="flex gap-2">
+                    <button class="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </button>
+                    <button class="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="relative">
+                <button class="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-colors -ml-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                
+                <button class="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-colors -mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto pb-4">
+                    <div class="bg-gray-900 rounded-lg shadow-md overflow-hidden min-w-[300px]">
+                        <img src="https://www.tombraider.com/_next/image?url=https%3A%2F%2F%2F%2Fimages.ctfassets.net%2Fx77ixfmkpoiv%2F16F0uF17UTDRYkfjGauSPK%2F6dc00262bd5c798920987fa7e7798410%2F50929412758_403df11767_o.jpg.jpg&w=3840&q=75" alt="Tomb Raider" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold mb-2">Tomb Raider</h4>
+                            <p class="text-red-600 font-bold mb-4">320.000 VNĐ</p>
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 px-4 rounded-lg transition-colors add-to-cart">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg shadow-md overflow-hidden min-w-[300px]">
+                        <img src="https://i.ytimg.com/vi/hh5HV4iic1Y/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCp0oG8X03pefRkIXQjS8_Q-uCYFw" alt="Uncharted" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold mb-2">Uncharted 4: A Thief's End</h4>
+                            <p class="text-red-600 font-bold mb-4">420.000 VNĐ</p>
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 px-4 rounded-lg transition-colors add-to-cart">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg shadow-md overflow-hidden min-w-[300px]">
+                        <img src="https://i.ytimg.com/vi/6SQ-LhDkGqM/maxresdefault.jpg" alt="Uncharted" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold mb-2">Subnautica 2</h4>
+                            <p class="text-red-600 font-bold mb-4">385.000 VNĐ</p>
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 px-4 rounded-lg transition-colors add-to-cart">
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-gray-900 py-8">
+    <div class="container mx-auto px-4 text-center text-gray-400">
+        <p>&copy; 2024 GameWorlds. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameWorlds - Cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Header Navigation - Copied from index.html -->
+    <header class="fixed w-full z-50 bg-black">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <div class="text-2xl font-bold text-purple-500"><a href="index.html">GameWorlds</a></div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="store.html" class="hover:text-purple-500 transition-colors">Store</a>
+                    <a href="faq.html" class="hover:text-purple-500 transition-colors">FAQ</a>
+                    <a href="help.html" class="hover:text-purple-500 transition-colors">Help</a>
+                    <a href="contact.html" class="hover:text-purple-500 transition-colors">Contact Us</a>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <div class="relative">
+                    <input type="search" placeholder="Search store" class="bg-gray-800 px-4 py-2 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                </div>
+                <a href="login.html" class="login-button bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition-colors">Login</a>
+                <a href="cart.html" class="text-white hover:text-purple-500 transition-colors relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cart Section -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold mb-8">Giỏ Hàng Của Bạn</h1>
+            
+            <!-- Cart Items -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Cart Items List -->
+                <div class="lg:col-span-2">
+                    <div class="space-y-4">
+                        <!-- Sample Cart Item -->
+                        <div class="bg-gray-800 rounded-lg p-4 flex items-center space-x-4">
+                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg?t=1715967756" alt="PUBG" class="w-24 h-24 object-cover rounded">
+                            <div class="flex-1">
+                                <h3 class="font-bold">PUBG: Battlegrounds</h3>
+                                <p class="text-purple-500 font-bold">300.000 VNĐ</p>
+                                <div class="flex items-center space-x-2 mt-2">
+                                    <button class="bg-gray-700 px-2 py-1 rounded">-</button>
+                                    <span>1</span>
+                                    <button class="bg-gray-700 px-2 py-1 rounded">+</button>
+                                    <button class="text-red-500 ml-4"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Empty Cart Message -->
+                        <div class="hidden bg-gray-800 rounded-lg p-8 text-center">
+                            <p class="text-gray-400 mb-4">Giỏ hàng của bạn đang trống</p>
+                            <a href="store.html" class="inline-block bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-lg transition-colors">
+                                Tiếp tục mua sắm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="bg-gray-800 rounded-lg p-6 h-fit">
+                    <h2 class="text-xl font-bold mb-4">Tổng đơn hàng</h2>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between">
+                            <span>Tạm tính</span>
+                            <span>300.000 VNĐ</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Giảm giá</span>
+                            <span>0 VNĐ</span>
+                        </div>
+                        <div class="border-t border-gray-700 pt-2 mt-2">
+                            <div class="flex justify-between font-bold">
+                                <span>Tổng cộng</span>
+                                <span>300.000 VNĐ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg transition-colors">
+                        Thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer - Copied from index.html -->
+    <footer class="bg-gray-900 py-8">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2024 GameWorlds. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -5,67 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameWorlds</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="src/output.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="bg-gray-900 text-white">
-    <!-- Header Navigation -->
-    <header class="fixed w-full z-50 bg-gray-900/90 backdrop-blur-sm">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-purple-500">GameWorlds</div>
-            <div class="hidden md:flex space-x-8 place-items-center">
-                <a href="#home" class="hover:text-purple-500 transition-colors">Home</a>
-                <a href="#games" class="hover:text-purple-500 transition-colors">Games</a>
-                <a href="#about" class="hover:text-purple-500 transition-colors">About</a>
-                <a href="#contact" class="hover:text-purple-500 transition-colors">Contact</a>
-                <a href="login.html" class="login-button bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition-colors">Login</a>
+    <!-- Header Navigation - Updated with black background and new layout -->
+    <header class="fixed w-full z-50 bg-black">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <div class="text-2xl font-bold text-purple-500"> <a href="index.html">GameWorlds</a></div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="store.html" class="hover:text-purple-500 transition-colors">Store</a>
+                    <a href="faq.html" class="hover:text-purple-500 transition-colors">FAQ</a>
+                    <a href="help.html" class="hover:text-purple-500 transition-colors">Help</a>
+                    <a href="contact.html" class="hover:text-purple-500 transition-colors">Contact Us</a>
+                </div>
             </div>
-            <button class="md:hidden">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path>
-                </svg>
-            </button>
+            <div class="hidden md:flex items-center space-x-6">
+                <div class="relative">
+                    <input type="search" placeholder="Search store" class="bg-gray-800 px-4 py-2 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                </div>
+                
+                <a href="login.html" class="login-button bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition-colors">Login</a>
+                <a href="cart.html" class="text-white hover:text-purple-500 transition-colors relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+            <!-- Mobile menu button remains unchanged -->
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen relative flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc'); background-size: cover; background-position: center;">
-        <div class="absolute inset-0 bg-black/60"></div>
-        <div class="relative container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Bước Vào Thế Giới Game!</h1>
-            <p class="text-xl md:text-2xl mb-8">Nâng cao trải nghiệm trò chơi với bộ sưu tập game cao cấp của chúng tôi</p>
-            <button class="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-full font-semibold transition-colors">Khám Phá Games Ngay!</button>
+    <!-- Hero Section - Updated with carousel-like layout -->
+    <section id="home" class="pt-16">
+        <div class="relative h-[600px]">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc" class="w-full h-full object-cover" alt="Hero">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent"></div>
+            </div>
+            <div class="relative container mx-auto px-6 py-20">
+                <div class="max-w-xl">
+                    <h1 class="text-5xl font-bold mb-6">Bước Vào Thế Giới Game!</h1>
+                    <p class="text-xl mb-8 text-gray-300">Nâng cao trải nghiệm trò chơi với bộ sưu tập game cao cấp của chúng tôi</p>
+                    <div class="space-x-4">
+                        <button class="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-lg font-semibold transition-colors"><a href="store.html">Mua Ngay</a></button>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Games Section -->
-    <section id="games" class="py-20 bg-gray-800">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Những Game Xu Hướng</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Game Card 1 -->
-                <div class="bg-gray-900 rounded-xl overflow-hidden transform hover:scale-105 transition-transform">
-                    <img src="https://cdn1.epicgames.com/spt-assets/53ec4985296b4facbe3a8d8d019afba9/pubg-battlegrounds-1e9a7.jpg" alt="Game 1" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">PlayerUnknown's Battlegrounds</h3>
-                        <p class="text-gray-400 mb-4">PUBG: Battlegrounds là một trò chơi điện tử hành động, sinh tồn, nhiều người chơi trực tuyến do Krafton Inc. - tập đoàn phát triển game có trụ sở chính được đặt tại thành phố Seongnam, Hàn Quốc thiết kế, phát triển và phát hành.</p>
-                        <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-lg transition-colors">Play Now</button>
+    <!-- Games Section - Updated with new card design -->
+    <section id="games" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">Những Game Xu Hướng</h2>
+                <a href="#" class="text-purple-500 hover:text-purple-400">Xem tất cả</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Game Card - Updated design -->
+                <div class="group bg-gray-900 rounded-lg overflow-hidden hover:scale-105 transition-transform">
+                    <div class="relative">
+                        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg?t=1715967756" alt="Game" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                            <span class="bg-purple-600 text-sm px-2 py-1 rounded">-40%</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2">PUBG: Battlegrounds</h3>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-gray-400 line-through">500.000 VNĐ</span>
+                            <span class="text-white font-bold">300.000 VNĐ</span>
+                        </div>
+                        <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-lg transition-colors add-to-cart">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
-                <!-- Game Card 2 -->
-                <div class="bg-gray-900 rounded-xl overflow-hidden transform hover:scale-105 transition-transform">
-                    <img src="https://fastcdn.hoyoverse.com/content-v2/hk4e/126819/4e3925f5d922ecae459cd362cf71f91f_3905560221701646016.jpg" alt="Game 2" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Genshin Impact</h3>
-                        <p class="text-gray-400 mb-4">Genshin Impact là trò chơi hành động nhập vai do miHoYo phát triển, được phát hành lần đầu vào ngày 28 tháng 9 năm 2020. Genshin Impact là tựa game mới được miHoYo phát triển tiếp nối sau series Honkai Impact.</p>
-                        <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-lg transition-colors">Play Now</button>
+                <!-- Repeat for other game cards -->
+                <div class="group bg-gray-900 rounded-lg overflow-hidden hover:scale-105 transition-transform">
+                    <div class="relative">
+                        <img src="https://fastcdn.hoyoverse.com/content-v2/hk4e/126819/4e3925f5d922ecae459cd362cf71f91f_3905560221701646016.jpg" alt="Game" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                            <span class="bg-purple-600 text-sm px-2 py-1 rounded">-100%</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2">Genshin Impact</h3>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-gray-400 line-through">500.000 VNĐ</span>
+                            <span class="text-white font-bold">0 VNĐ</span>
+                        </div>
+                        <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-lg transition-colors add-to-cart">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
-                <!-- Game Card 3 -->
-                <div class="bg-gray-900 rounded-xl overflow-hidden transform hover:scale-105 transition-transform">
-                    <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1613284/header.jpg?t=1703992150" alt="Game 3" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Forza Horizon 5</h3>
-                        <p class="text-gray-400 mb-4">Forza Horizon 5 là một trò chơi điện tử đua xe năm 2021 được phát triển bởi Playground Games và được Xbox Game Studios phát hành. Đây là tựa Forza Horizon thứ năm và là phần chính thứ mười hai trong loạt Forza. Trò chơi lấy bối cảnh một đại diện hư cấu của Mexico.</p>
-                        <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-lg transition-colors">Play Now</button>
+                <!-- Repeat for other game cards -->
+                <div class="group bg-gray-900 rounded-lg overflow-hidden hover:scale-105 transition-transform">
+                    <div class="relative">
+                        <img src="https://cdn2.unrealengine.com/social-image-chapter4-s3-3840x2160-d35912cc25ad.jpg" alt="Game" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                            <span class="bg-purple-600 text-sm px-2 py-1 rounded">-50%</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2">Fortnite</h3>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-gray-400 line-through">500.000 VNĐ</span>
+                            <span class="text-white font-bold">250.000 VNĐ</span>
+                        </div>
+                        <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-lg transition-colors add-to-cart">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+                <div class="group bg-gray-900 rounded-lg overflow-hidden hover:scale-105 transition-transform">
+                    <div class="relative">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2300320/capsule_616x353.jpg?t=1731590722" alt="Game" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                            <span class="bg-purple-600 text-sm px-2 py-1 rounded">-20%</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2">Farming Simulator 25</h3>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-gray-400 line-through">950.000 VNĐ</span>
+                            <span class="text-white font-bold">760.000 VNĐ</span>
+                        </div>
+                        <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-lg transition-colors add-to-cart">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
             </div>
@@ -91,27 +155,7 @@
     </section>
 
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-800">
-        <div class="container mx-auto px-4 max-w-2xl">
-            <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
-            <form class="space-y-6">
-                <div>
-                    <label for="name" class="block mb-2">Name</label>
-                    <input type="text" id="name" required class="w-full bg-gray-900 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
-                </div>
-                <div>
-                    <label for="email" class="block mb-2">Email</label>
-                    <input type="email" id="email" required class="w-full bg-gray-900 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
-                </div>
-                <div>
-                    <label for="message" class="block mb-2">Message</label>
-                    <textarea id="message" rows="4" required class="w-full bg-gray-900 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg transition-colors">Send Message</button>
-            </form>
-        </div>
-    </section>
+    
 
     <!-- Footer -->
     <footer class="bg-gray-900 py-8">
