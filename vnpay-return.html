@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả thanh toán VNPAY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full mx-4 p-8 bg-gray-800 rounded-lg shadow-lg">
+        <div id="payment-result" class="text-center">
+            <div class="mb-6">
+                <i id="status-icon" class="fas fa-4x"></i>
+            </div>
+            <h1 id="status-message" class="text-2xl font-bold mb-4"></h1>
+            <p id="order-info" class="mb-4 text-gray-400"></p>
+            <div class="space-y-4">
+                <p id="amount" class="text-lg"></p>
+                <p id="transaction-no" class="text-sm text-gray-400"></p>
+                <p id="bank-code" class="text-sm text-gray-400"></p>
+                <p id="payment-time" class="text-sm text-gray-400"></p>
+            </div>
+            <div class="mt-8 space-x-4">
+                <a href="index.html" class="inline-block bg-gray-600 hover:bg-gray-700 px-6 py-2 rounded-lg transition-colors">
+                    Về trang chủ
+                </a>
+                <a href="store.html" class="inline-block bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-lg transition-colors">
+                    Tiếp tục mua sắm
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lấy các tham số từ URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const responseCode = urlParams.get('vnp_ResponseCode');
+            const amount = parseInt(urlParams.get('vnp_Amount')) / 100; // Chuyển về VND
+            const orderInfo = urlParams.get('vnp_OrderInfo');
+            const transactionNo = urlParams.get('vnp_TransactionNo');
+            const bankCode = urlParams.get('vnp_BankCode');
+            const payDate = urlParams.get('vnp_PayDate');
+
+            // Lấy các phần tử DOM
+            const statusIcon = document.getElementById('status-icon');
+            const statusMessage = document.getElementById('status-message');
+            const orderInfoElement = document.getElementById('order-info');
+            const amountElement = document.getElementById('amount');
+            const transactionElement = document.getElementById('transaction-no');
+            const bankCodeElement = document.getElementById('bank-code');
+            const paymentTimeElement = document.getElementById('payment-time');
+
+            // Xử lý hiển thị kết quả
+            if (responseCode === '00') {
+                // Thanh toán thành công
+                statusIcon.className = 'fas fa-check-circle text-green-500 fa-4x';
+                statusMessage.textContent = 'Thanh toán thành công';
+                statusMessage.className = 'text-2xl font-bold mb-4 text-green-500';
+
+                // Thêm xử lý lưu đơn hàng khi thanh toán thành công
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                if (currentUser) {
+                    // Lấy giỏ hàng hiện tại của user
+                    const cart = JSON.parse(localStorage.getItem(`cart_${currentUser.email}`)) || [];
+                    const selectedItems = JSON.parse(localStorage.getItem(`selectedItems_${currentUser.email}`)) || [];
+                    
+                    // Tạo đơn hàng mới
+                    const order = {
+                        orderId: transactionNo,
+                        items: cart.filter(item => selectedItems.includes(item.id)),
+                        totalAmount: amount,
+                        purchaseDate: new Date().toISOString(),
+                        status: 'Đã thanh toán',
+                        bankCode: bankCode,
+                        paymentTime: payDate
+                    };
+
+                    // Lưu vào lịch sử mua hàng
+                    const orderHistory = JSON.parse(localStorage.getItem(`orderHistory_${currentUser.email}`)) || [];
+                    orderHistory.push(order);
+                    localStorage.setItem(`orderHistory_${currentUser.email}`, JSON.stringify(orderHistory));
+
+                    // Xóa các sản phẩm đã mua khỏi giỏ hàng
+                    const newCart = cart.filter(item => !selectedItems.includes(item.id));
+                    localStorage.setItem(`cart_${currentUser.email}`, JSON.stringify(newCart));
+                    
+                    // Xóa danh sách selectedItems
+                    localStorage.removeItem(`selectedItems_${currentUser.email}`);
+                }
+            } else {
+                // Thanh toán thất bại
+                statusIcon.className = 'fas fa-times-circle text-red-500 fa-4x';
+                statusMessage.textContent = 'Thanh toán thất bại';
+                statusMessage.className = 'text-2xl font-bold mb-4 text-red-500';
+            }
+
+            // Hiển thị thông tin chi tiết
+            orderInfoElement.textContent = orderInfo;
+            amountElement.textContent = `Số tiền: ${amount.toLocaleString('vi-VN')} VNĐ`;
+            transactionElement.textContent = `Mã giao dịch: ${transactionNo}`;
+            bankCodeElement.textContent = `Ngân hàng: ${bankCode}`;
+            
+            // Format thời gian thanh toán
+            if (payDate) {
+                const formattedDate = `${payDate.slice(6, 8)}/${payDate.slice(4, 6)}/${payDate.slice(0, 4)} ${payDate.slice(8, 10)}:${payDate.slice(10, 12)}:${payDate.slice(12, 14)}`;
+                paymentTimeElement.textContent = `Thời gian: ${formattedDate}`;
+            }
+        });
+    </script>
+</body>
+</html> 

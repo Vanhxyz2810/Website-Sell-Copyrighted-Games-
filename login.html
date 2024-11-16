@@ -9,36 +9,69 @@
 </head>
 <body class="bg-gray-900 text-white">
 
-    <!-- Header Navigation -->
-    <header class="fixed w-full z-50 bg-gray-900/90 backdrop-blur-sm">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-purple-500">GameWorlds</div>
-            <div class="hidden md:flex space-x-8">
-                <a href="index.html" class="hover:text-purple-500 transition-colors">Home</a>
-                <a href="#games" class="hover:text-purple-500 transition-colors">Games</a>
-                <a href="#about" class="hover:text-purple-500 transition-colors">About</a>
-                <a href="#contact" class="hover:text-purple-500 transition-colors">Contact</a>
-                <!-- Liên kết quay lại trang chính -->
-                <a href="index.html" class="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition-colors">Login</a>
+    <!-- Header Navigation - Updated with black background and new layout -->
+    <header class="fixed w-full z-50 bg-black">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <div class="text-2xl font-bold text-purple-500"> <a href="index.html">GameWorlds</a></div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="store.html" class="hover:text-purple-500 transition-colors">Store</a>
+                    <a href="faq.html" class="hover:text-purple-500 transition-colors">FAQ</a>
+                    <a href="help.html" class="hover:text-purple-500 transition-colors">Help</a>
+                    <a href="contact.html" class="hover:text-purple-500 transition-colors">Contact Us</a>
+                </div>
             </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <div class="relative">
+                    <input type="search" placeholder="Tìm kiếm" class="bg-gray-800 px-4 py-2 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                </div>
+                
+                <!-- User section - sẽ được toggle bởi JavaScript -->
+                <div id="user-section" class="flex items-center space-x-6">
+                    <!-- Login button - hiển thị khi chưa đăng nhập -->
+                    <a href="login.html" id="login-button" class="login-button bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition-colors">Đăng nhập</a>
+                    
+                    <!-- User info - hiển thị khi đã đăng nhập -->
+                    <div id="user-info" class="hidden items-center space-x-4">
+                        <span class="text-purple-500">Xin chào, <span id="user-name">User</span></span>
+                        <button onclick="handleLogout()" class="text-gray-400 hover:text-white">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                        <!-- Cart icon chỉ hiển thị khi đã đăng nhập -->
+                        <a href="cart.html" class="text-white hover:text-purple-500 transition-colors relative">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <span id="cart-count" class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile menu button remains unchanged -->
         </nav>
     </header>
 
     <!-- Login Section -->
     <section id="login" class="py-20 bg-gray-800">
         <div class="container mx-auto px-4 max-w-md">
-            <h2 class="text-3xl font-bold text-center mb-12">Login</h2>
-            <form class="bg-gray-900 p-8 rounded-xl space-y-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Đăng nhập</h2>
+            <form id="login-form" class="bg-gray-900 p-8 rounded-xl space-y-6">
                 <div>
-                    <label for="email" class="block mb-2">Email</label>
-                    <input type="email" id="login-email" required class="w-full bg-gray-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                    <label for="login-email" class="block mb-2">Email</label>
+                    <input type="email" id="login-email" required 
+                        class="w-full bg-gray-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
                 </div>
                 <div>
-                    <label for="password" class="block mb-2">Password</label>
-                    <input type="password" id="login-password" required class="w-full bg-gray-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                    <label for="login-password" class="block mb-2">Mật khẩu</label>
+                    <input type="password" id="login-password" required 
+                        class="w-full bg-gray-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
                 </div>
-                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg transition-colors" id="loginButton" onclick="handleLogin(event)">Sign In</button>
-                <p class="text-center text-gray-400">Don't have an account? <a href="signup.html" class="text-purple-500 hover:text-purple-400">Sign up</a></p>
+                <button type="submit" id="login-submit-btn"
+                    class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg transition-colors">
+                    Đăng nhập
+                </button>
+                <p class="text-center text-gray-400">
+                    Chưa có tài khoản? 
+                    <a href="signup.html" class="text-purple-500 hover:text-purple-400">Đăng ký</a>
+                </p>
             </form>
         </div>
     </section>
@@ -46,11 +79,73 @@
 
 
     <!-- Footer -->
-    <footer class="bg-gray-900 py-8">
-        <div class="container mx-auto px-4 text-center text-gray-400">
-            <p>&copy; 2024 GameWorlds. All rights reserved.</p>
+    <footer class="bg-gray-900 py-12">
+        <div class="container mx-auto px-6">
+            <!-- Social Media Links -->
+            <div class="flex justify-center space-x-8 mb-8">
+                <a href="#" class="text-gray-400 hover:text-white">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+
+            <!-- Footer Links Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Support-A-Creator</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Publish on GameWorlds</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Features</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Roadmap</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Store Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">On Sale</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Community</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Community Rules</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Forums</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Developer Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">&copy; 2024 GameWorlds. All rights reserved.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">Terms</a>
+                        <a href="#" class="text-gray-400 hover:text-white">Privacy</a>
+                        <a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
-    <script src="main.js"></script>
+
+    <!-- Thêm Font Awesome cho các icon mạng xã hội -->
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>

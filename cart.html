@@ -1,106 +1,385 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameWorlds - Cart</title>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameWorlds - Giỏ hàng</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-<body class="bg-gray-900 text-white">
-    <!-- Header Navigation - Copied from index.html -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body class="bg-gray-900 text-white">
+    <!-- Header Navigation -->
     <header class="fixed w-full z-50 bg-black">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-8">
-                <div class="text-2xl font-bold text-purple-500"><a href="index.html">GameWorlds</a></div>
-                <div class="hidden md:flex space-x-6">
-                    <a href="store.html" class="hover:text-purple-500 transition-colors">Store</a>
-                    <a href="faq.html" class="hover:text-purple-500 transition-colors">FAQ</a>
-                    <a href="help.html" class="hover:text-purple-500 transition-colors">Help</a>
-                    <a href="contact.html" class="hover:text-purple-500 transition-colors">Contact Us</a>
-                </div>
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-8">
+          <div class="text-2xl font-bold text-purple-500">
+            <a href="index.html">GameWorlds</a>
+          </div>
+          <div class="hidden md:flex space-x-6">
+            <a href="store.html" class="hover:text-purple-500 transition-colors"
+              >Cửa hàng</a
+            >
+            <a href="faq.html" class="hover:text-purple-500 transition-colors"
+              >FAQ</a
+            >
+            <a href="help.html" class="hover:text-purple-500 transition-colors"
+              >Trợ giúp</a
+            >
+            <a
+              href="contact.html"
+              class="hover:text-purple-500 transition-colors"
+              >Liên hệ</a
+            >
+            <a href="history.html" class="hover:text-purple-500 transition-colors"
+              >Lịch sử mua hàng</a
+            >
+            <a href="profile.html" class="hover:text-purple-500 transition-colors"
+              >Hồ sơ</a
+            >
+          </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-6">
+          <div class="relative">
+            <input
+              type="search"
+              placeholder="Tìm kiếm"
+              class="bg-gray-800 px-4 py-2 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-purple-600"
+            />
+          </div>
+          
+          <!-- User section - sẽ được toggle bởi JavaScript -->
+          <div id="user-section" class="flex items-center space-x-6">
+            <!-- Login button - hiển thị khi chưa đăng nhập -->
+            <a href="login.html" id="login-button" class="login-button bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition-colors">Đăng nhập</a>
+            
+            <!-- User info - hiển thị khi đã đăng nhập -->
+            <div id="user-info" class="hidden items-center space-x-4">
+              <span class="text-purple-500">Xin chào, <span id="user-name">User</span></span>
+              <button onclick="handleLogout()" class="text-gray-400 hover:text-white">
+                <i class="fas fa-sign-out-alt"></i>
+              </button>
             </div>
-            <div class="hidden md:flex items-center space-x-6">
-                <div class="relative">
-                    <input type="search" placeholder="Search store" class="bg-gray-800 px-4 py-2 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-purple-600">
-                </div>
-                <a href="login.html" class="login-button bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition-colors">Login</a>
-                <a href="cart.html" class="text-white hover:text-purple-500 transition-colors relative">
-                    <i class="fas fa-shopping-cart text-xl"></i>
-                    <span id="cart-count" class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                </a>
-            </div>
-        </nav>
+          </div>
+          
+          <a href="cart.html" class="text-white hover:text-purple-500 transition-colors relative">
+            <i class="fas fa-shopping-cart text-xl"></i>
+            <span id="cart-count" class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+          </a>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-white hover:text-purple-500">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile menu -->
+<div id="mobile-menu" class="hidden md:hidden bg-black">
+  <div class="px-4 py-3 space-y-4">
+      <a href="store.html" class="block hover:text-purple-500 transition-colors">Store</a>
+      <a href="faq.html" class="block hover:text-purple-500 transition-colors">FAQ</a>
+      <a href="help.html" class="block hover:text-purple-500 transition-colors">Trợ giúp</a>
+      <a href="contact.html" class="block hover:text-purple-500 transition-colors">Liên Hệ</a>
+      <a href="history.html" class="block hover:text-purple-500 transition-colors">Lịch sử mua hàng</a>
+      <a href="profile.html" class="block hover:text-purple-500 transition-colors">Hồ sơ</a>
+      <div class="relative">
+          <input type="search" placeholder="Search store" class="bg-gray-800 px-4 py-2 rounded-full w-full focus:outline-none focus:ring-2 focus:ring-purple-600">
+      </div>
+      <div class="flex items-center justify-between">
+          <!-- Mobile login/user info -->
+          <div id="mobile-user-section" class="flex-grow mr-4">
+              <!-- Mobile login button -->
+              <a href="login.html" id="mobile-login-button" class="block bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full text-center transition-colors">Đăng nhập</a>
+              
+              <!-- Mobile user info -->
+              <div id="mobile-user-info" class="hidden">
+                  <span class="text-purple-500">Xin chào, <span id="mobile-user-name">User</span></span>
+                  <button onclick="handleLogout()" class="text-gray-400 hover:text-white ml-2">
+                      <i class="fas fa-sign-out-alt"></i>
+                  </button>
+              </div>
+          </div>
+          
+          <a href="cart.html" class="text-white hover:text-purple-500 transition-colors relative">
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span id="mobile-cart-count" class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+          </a>
+      </div>
+  </div>
+</div>
     </header>
 
     <!-- Cart Section -->
     <main class="pt-24 pb-16">
-        <div class="container mx-auto px-4">
-            <h1 class="text-3xl font-bold mb-8">Giỏ Hàng Của Bạn</h1>
-            
-            <!-- Cart Items -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Cart Items List -->
-                <div class="lg:col-span-2">
-                    <div class="space-y-4">
-                        <!-- Sample Cart Item -->
-                        <div class="bg-gray-800 rounded-lg p-4 flex items-center space-x-4">
-                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg?t=1715967756" alt="PUBG" class="w-24 h-24 object-cover rounded">
-                            <div class="flex-1">
-                                <h3 class="font-bold">PUBG: Battlegrounds</h3>
-                                <p class="text-purple-500 font-bold">300.000 VNĐ</p>
-                                <div class="flex items-center space-x-2 mt-2">
-                                    <button class="bg-gray-700 px-2 py-1 rounded">-</button>
-                                    <span>1</span>
-                                    <button class="bg-gray-700 px-2 py-1 rounded">+</button>
-                                    <button class="text-red-500 ml-4"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Empty Cart Message -->
-                        <div class="hidden bg-gray-800 rounded-lg p-8 text-center">
-                            <p class="text-gray-400 mb-4">Giỏ hàng của bạn đang trống</p>
-                            <a href="store.html" class="inline-block bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-lg transition-colors">
-                                Tiếp tục mua sắm
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cart Summary -->
-                <div class="bg-gray-800 rounded-lg p-6 h-fit">
-                    <h2 class="text-xl font-bold mb-4">Tổng đơn hàng</h2>
-                    <div class="space-y-2 mb-4">
-                        <div class="flex justify-between">
-                            <span>Tạm tính</span>
-                            <span>300.000 VNĐ</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Giảm giá</span>
-                            <span>0 VNĐ</span>
-                        </div>
-                        <div class="border-t border-gray-700 pt-2 mt-2">
-                            <div class="flex justify-between font-bold">
-                                <span>Tổng cộng</span>
-                                <span>300.000 VNĐ</span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg transition-colors">
-                        Thanh toán
-                    </button>
-                </div>
-            </div>
+      <div class="container mx-auto px-4">
+        <!-- Breadcrumb navigation -->
+        <div class="flex items-center space-x-2 text-sm mb-4">
+          <a href="index.html" class="text-gray-400 hover:text-white">Trang chủ</a>
+          <span class="text-gray-600">/</span>
+          <span class="text-white">Giỏ hàng</span>
         </div>
+
+        <h1 class="text-3xl font-bold mb-8">Giỏ Hàng Của Bạn</h1>
+
+        <!-- Cart Items -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Cart Items List -->
+          <div class="lg:col-span-2">
+            <div class="space-y-4">
+              <!-- Sample Cart Item -->
+              <div
+                class="bg-gray-800 rounded-lg p-4 flex items-center space-x-4"
+              >
+                <img
+                  src="https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg?t=1715967756"
+                  alt="PUBG"
+                  class="w-24 h-24 object-cover rounded"
+                />
+                <div class="flex-1">
+                  <h3 class="font-bold">PUBG: Battlegrounds</h3>
+                  <p class="text-purple-500 font-bold">300.000 VNĐ</p>
+                  <div class="flex items-center space-x-2 mt-2">
+                    <button class="bg-gray-700 px-2 py-1 rounded">-</button>
+                    <span>1</span>
+                    <button class="bg-gray-700 px-2 py-1 rounded">+</button>
+                    <button class="text-red-500 ml-4">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Empty Cart Message -->
+              <div class="hidden bg-gray-800 rounded-lg p-8 text-center">
+                <p class="text-gray-400 mb-4">Giỏ hàng của bạn đang trống</p>
+                <a
+                  href="store.html"
+                  class="inline-block bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-lg transition-colors"
+                >
+                  Tiếp tục mua sắm
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cart Summary -->
+          <div class="bg-gray-800 rounded-lg p-6 h-fit">
+            <h2 class="text-xl font-bold mb-4">Tổng đơn hàng</h2>
+            
+            <!-- Mã giới thiệu -->
+            <div class="mb-4">
+              <label class="block text-sm font-medium mb-2">Bạn có mã giới thiệu?</label>
+              <div class="flex gap-2">
+                <input type="text" placeholder="Nhập mã giới thiệu" class="flex-1 bg-gray-700 rounded px-3 py-2">
+                <button class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded">Áp dụng</button>
+              </div>
+            </div>
+
+            <!-- Mã ưu đãi -->
+            <div class="mb-4">
+              <label class="block text-sm font-medium mb-2">Bạn có mã ưu đãi?</label>
+              <div class="flex gap-2">
+                <input type="text" placeholder="Nhập mã ưu đãi" class="flex-1 bg-gray-700 rounded px-3 py-2">
+                <button class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded">Áp dụng</button>
+              </div>
+            </div>
+
+            <div class="space-y-2 mb-4">
+              <div class="flex justify-between">
+                <span>Tạm tính</span>
+                <span>300.000 VNĐ</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Giảm giá</span>
+                <span>0 VNĐ</span>
+              </div>
+              <div class="border-t border-gray-700 pt-2 mt-2">
+                <div class="flex justify-between font-bold">
+                  <span>Tổng cộng</span>
+                  <span>300.000 VNĐ</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Thêm modal QR payment -->
+            <div id="qr-modal" class="invisible fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+              <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full mx-4">
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="text-xl font-bold">Quét mã QR để thanh toán</h3>
+                  <button onclick="closeQRModal()" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <div class="text-center">
+                  <div class="bg-white p-4 rounded-lg mb-4">
+                    <!-- Thay thế bằng QR code thật -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code" class="mx-auto">
+                  </div>
+                  <p class="mb-2">Số tiền: <span class="font-bold">300.000 VNĐ</span></p>
+                  <p class="text-sm text-gray-400 mb-4">Quét mã QR bằng ứng dụng Mobile Banking để thanh toán</p>
+                  <div class="flex justify-center space-x-4">
+                    <button onclick="closeQRModal()" class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded">
+                      Hủy
+                    </button>
+                    <button onclick="checkPayment()" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded">
+                      Đã thanh toán
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cập nhật phần phương thức thanh toán -->
+            <div class="mt-4 pt-4 border-t border-gray-700">
+              <h3 class="font-bold mb-3">Phương thức thanh toán</h3>
+              <div class="space-y-2">
+                <div class="payment-method flex items-center space-x-3 p-3 bg-gray-700 rounded cursor-pointer hover:bg-gray-600 transition-all" data-method="momo">
+                  <i class="fas fa-wallet text-pink-500"></i>
+                  <span class="flex-1">Ví MoMo</span>
+                </div>
+                <div class="payment-method flex items-center space-x-3 p-3 bg-gray-700 rounded cursor-pointer hover:bg-gray-600 transition-all" data-method="banking">
+                  <i class="fas fa-university text-blue-500"></i>
+                  <span class="flex-1">Mobile Banking</span>
+                </div>
+                <div class="payment-method flex items-center space-x-3 p-3 bg-gray-700 rounded cursor-pointer hover:bg-gray-600 transition-all" data-method="card">
+                  <i class="fas fa-credit-card text-green-500"></i>
+                  <span class="flex-1">Thẻ Visa/Mastercard</span>
+                </div>
+              </div>
+            </div>
+            <br>
+            <button
+              class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg transition-colors"
+            >
+              Thanh toán ngay
+            </button>
+          </div>
+        </div>
+      </div>
     </main>
 
-    <!-- Footer - Copied from index.html -->
-    <footer class="bg-gray-900 py-8">
-        <div class="container mx-auto px-4 text-center text-gray-400">
-            <p>&copy; 2024 GameWorlds. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+      <div class="container mx-auto px-6">
+        <!-- Social Media Links -->
+        <div class="flex justify-center space-x-8 mb-8">
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-instagram"></i>
+          </a>
         </div>
+
+        <!-- Footer Links Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <h3 class="text-white font-bold mb-4">Tài nguyên</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Hỗ trợ người sáng tạo</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Đăng game trên GameWorlds</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Tuyển dụng</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-white font-bold mb-4">Công ty</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Giới thiệu</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Điều khoản dịch vụ</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Chính sách bảo mật</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-white font-bold mb-4">Tính năng</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Lộ trình</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Tính năng cửa hàng</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Khuyến mãi</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-white font-bold mb-4">Cộng đồng</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Nội quy cộng đồng</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Diễn đàn</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Blog phát triển</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="border-t border-gray-800 pt-8">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-400 mb-4 md:mb-0">
+              &copy; 2024 GameWorlds. Đã đăng ký bản quyền.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white">Điều khoản</a>
+              <a href="#" class="text-gray-400 hover:text-white">Quyền riêng tư</a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                >Chính sách cookie</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
+
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+    <script src="vnpay.js"></script>
     <script src="main.js"></script>
-</body>
+  </body>
 </html>

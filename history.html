@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Sử Mua Hàng - GameWorlds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Header Navigation - Updated with black background and new layout -->
+    <header class="fixed w-full z-50 bg-black">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <div class="text-2xl font-bold text-purple-500"> <a href="index.html">GameWorlds</a></div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="store.html" class="hover:text-purple-500 transition-colors">Store</a>
+                    <a href="faq.html" class="hover:text-purple-500 transition-colors">FAQ</a>
+                    <a href="help.html" class="hover:text-purple-500 transition-colors">Trợ giúp</a>
+                    <a href="contact.html" class="hover:text-purple-500 transition-colors">Liên Hệ</a>
+                    <a href="history.html" class="hover:text-purple-500 transition-colors">Lịch sử mua hàng</a>
+                    <a href="profile.html" class="hover:text-purple-500 transition-colors">Hồ sơ</a>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <div class="relative">
+                    <input type="search" placeholder="Search store" class="bg-gray-800 px-4 py-2 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                </div>
+                
+                <a href="login.html" class="login-button bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition-colors">Login</a>
+                <a href="cart.html" class="text-white hover:text-purple-500 transition-colors relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white hover:text-purple-500">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black">
+            <div class="px-4 py-3 space-y-4">
+                <a href="store.html" class="block hover:text-purple-500 transition-colors">Store</a>
+                <a href="faq.html" class="block hover:text-purple-500 transition-colors">FAQ</a>
+                <a href="help.html" class="block hover:text-purple-500 transition-colors">Trợ giúp</a>
+                <a href="contact.html" class="block hover:text-purple-500 transition-colors">Liên Hệ</a>
+                <a href="history.html" class="block hover:text-purple-500 transition-colors">Lịch sử mua hàng</a>
+                <a href="profile.html" class="block hover:text-purple-500 transition-colors">Hồ sơ</a>
+                <div class="relative">
+                    <input type="search" placeholder="Search store" class="bg-gray-800 px-4 py-2 rounded-full w-full focus:outline-none focus:ring-2 focus:ring-purple-600">
+                </div>
+                <a href="login.html" class="block bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full text-center transition-colors">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8">Lịch Sử Mua Hàng</h1>
+        
+        <!-- Order History Container -->
+        <div id="order-history" class="space-y-6">
+            <!-- Nội dung sẽ được thêm bởi JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 mt-auto">
+        <div class="container mx-auto px-4 py-8">
+            <div class="text-center text-gray-400">
+                <p>&copy; 2024 GameWorlds. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
